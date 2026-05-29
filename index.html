@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PETA Karir — Your Learning Roadmap Starts Here</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+
+  <link rel="stylesheet" href="css/globals.css" />
+</head>
+
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
+
+    <!-- Hero from renderHero() -->
+    <section id="hero-section"></section>
+
+    <!-- Competency Paths -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Competency Path</h2>
+          <p class="text-sm text-slate-500 mt-0.5">Jalur karir industri untuk developer profesional</p>
+        </div>
+        <a href="paths.html?category=competency" class="flex items-center gap-1 text-sm text-blue-600 font-semibold hover:underline">
+          Lihat semua
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <!-- render renderCompetencyGrid() -->
+      <div id="competency-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger"></div>
+    </section>
+
+    <!-- Study Program Paths -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Study Program Path</h2>
+          <p class="text-sm text-slate-500 mt-0.5">Kurikulum resmi program studi FILKOM UB</p>
+        </div>
+        <a href="paths.html?category=study_program" class="flex items-center gap-1 text-sm text-blue-600 font-semibold hover:underline">
+          Lihat semua
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <!-- renderStudyGrid() -->
+      <div id="study-grid" class="grid sm:grid-cols-2 gap-4 stagger"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  
+  <script src="js/data/paths.js"></script>
+  <script src="js/store/progressStore.js"></script>
+  <script src="js/components/Navbar.js"></script>
+  <script src="js/components/Footer.js"></script>
+  <script src="js/components/PathCard.js"></script>
+  <script src="js/pages/homepage.js"></script>
+
+</body>
+</html>
