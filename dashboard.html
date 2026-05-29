@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — PETA Karir</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT:"#2563EB", 50:"#EFF6FF", 600:"#2563EB", 700:"#1D4ED8" },
+            accent: "#38BDF8",
+          },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"] },
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/globals.css" />
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+  <div id="navbar"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <h1 class="text-2xl font-bold text-slate-900 mb-2">Dashboard</h1>
+      <p class="text-slate-500 text-sm">Halaman ini sedang dikerjakan oleh anggota tim lain.</p>
+  </main>
+
+  <div id="footer"></div>
+  <script src="js/data/paths.js"></script>
+  <script src="js/store/progressStore.js"></script>
+  <script src="js/components/Navbar.js"></script>
+  <script src="js/components/Footer.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const total = PATHS.reduce((a,p) => a + p.nodes_count, 0);
+      const done  = PATHS.reduce((a,p) => a + ProgressStore.getDoneCount(p.path_id), 0);
+      const pct   = total > 0 ? Math.round((done/total)*100) : 0;
+      Navbar.init("#navbar", pct);
+      Footer.init("#footer");
+    });
+  </script>
+</body>
+</html>

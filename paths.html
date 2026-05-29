@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paths — PETA Karir</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT:"#2563EB", 50:"#EFF6FF", 600:"#2563EB", 700:"#1D4ED8" },
+            accent: "#38BDF8",
+          },
+          fontFamily: { sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"] },
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/globals.css" />
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+
+  <div id="navbar"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
+
+    <!-- Competency -->
+    <section aria-labelledby="all-competency-heading">
+      <div class="mb-6">
+        <h1 id="all-competency-heading" class="text-2xl font-bold text-slate-900">
+          Competency Paths
+        </h1>
+        <p class="text-sm text-slate-500 mt-1">
+          Jalur karir industri untuk developer profesional
+        </p>
+      </div>
+      <div id="competency-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger"></div>
+    </section>
+
+    <!-- Study program -->
+    <section aria-labelledby="all-study-heading">
+      <div class="mb-6">
+        <h2 id="all-study-heading" class="text-2xl font-bold text-slate-900">
+          Study Program Paths
+        </h2>
+        <p class="text-sm text-slate-500 mt-1">
+          Kurikulum resmi program studi FILKOM UB
+        </p>
+      </div>
+      <div id="study-grid" class="grid sm:grid-cols-2 gap-4 stagger"></div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="js/data/paths.js"></script>
+  <script src="js/store/progressStore.js"></script>
+  <script src="js/components/Navbar.js"></script>
+  <script src="js/components/Footer.js"></script>
+  <script src="js/components/PathCard.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const total   = PATHS.reduce((a, p) => a + p.nodes_count, 0);
+      const done    = PATHS.reduce((a, p) => a + ProgressStore.getDoneCount(p.path_id), 0);
+      const overall = total > 0 ? Math.round((done / total) * 100) : 0;
+      const activeId = ProgressStore.getActivePath();
+
+      Navbar.init("#navbar", overall);
+      Footer.init("#footer");
+
+      const cGrid = document.getElementById("competency-grid");
+      const sGrid = document.getElementById("study-grid");
+
+      cGrid.innerHTML = PATHS
+        .filter(p => p.category === "competency")
+        .map(p => PathCard.competency(
+          p,
+          ProgressStore.getPercent(p.path_id, p.nodes_count),
+          ProgressStore.getDoneCount(p.path_id),
+          p.path_id === activeId
+        )).join("");
+
+      sGrid.innerHTML = PATHS
+        .filter(p => p.category === "study_program")
+        .map(p => PathCard.studyProgram(
+          p,
+          ProgressStore.getPercent(p.path_id, p.nodes_count),
+          ProgressStore.getDoneCount(p.path_id),
+          p.path_id === activeId
+        )).join("");
+    });
+  </script>
+</body>
+</html>
