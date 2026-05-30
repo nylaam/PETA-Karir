@@ -9,6 +9,74 @@ var PATHS = [
     color: "#2563EB",
     estimatedWeeks: 24,
     nodes_count: 6,
+    nodes: [
+      {
+        id: "prog_basics", title: "Programming Basics",
+        description: "Learn core programming fundamentals including variables, loops, functions, and OOP concepts.",
+        tags: ["Fundamental"], level: "beginner",
+        resources: [
+          { title: "CS50 - Harvard", url: "https://cs50.harvard.edu/x/", type: "course" },
+          { title: "Python Tutorial", url: "https://docs.python.org/3/tutorial/", type: "docs" }
+        ],
+        checklist: ["Variabel & tipe data", "Kondisional & looping", "Fungsi & rekursi", "OOP dasar"],
+        connections: ["data_structures"]
+      },
+      {
+        id: "data_structures", title: "Data Structures & Algorithms",
+        description: "Understand fundamental data structures and algorithmic thinking for efficient programming.",
+        tags: ["Core CS"], level: "beginner",
+        resources: [
+          { title: "DSA Course - freeCodeCamp", url: "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/", type: "course" },
+          { title: "LeetCode Practice", url: "https://leetcode.com/", type: "practice" }
+        ],
+        checklist: ["Array & linked list", "Stack & queue", "Tree & graph", "Sorting algorithms", "Big-O notation"],
+        connections: ["db_fundamentals", "backend_framework"]
+      },
+      {
+        id: "db_fundamentals", title: "Database Fundamentals",
+        description: "Master relational databases, SQL queries, and database design principles.",
+        tags: ["Database"], level: "beginner",
+        resources: [
+          { title: "SQL Tutorial - W3Schools", url: "https://www.w3schools.com/sql/", type: "docs" },
+          { title: "PostgreSQL Docs", url: "https://www.postgresql.org/docs/", type: "docs" }
+        ],
+        checklist: ["SQL dasar (SELECT, INSERT, UPDATE)", "JOIN & relasi tabel", "Database normalization", "Indexing"],
+        connections: ["backend_framework"]
+      },
+      {
+        id: "backend_framework", title: "Backend Framework",
+        description: "Build REST APIs using modern backend frameworks like Express, FastAPI, or Spring Boot.",
+        tags: ["Framework", "API"], level: "intermediate",
+        resources: [
+          { title: "Express.js Guide", url: "https://expressjs.com/en/guide/routing.html", type: "docs" },
+          { title: "FastAPI Tutorial", url: "https://fastapi.tiangolo.com/tutorial/", type: "docs" }
+        ],
+        checklist: ["Routing & middleware", "Request/response handling", "Authentication (JWT)", "Error handling"],
+        connections: ["api_design"]
+      },
+      {
+        id: "api_design", title: "API Design & REST",
+        description: "Design scalable and well-documented RESTful APIs following industry best practices.",
+        tags: ["API"], level: "intermediate",
+        resources: [
+          { title: "REST API Design Guide", url: "https://restfulapi.net/", type: "article" },
+          { title: "OpenAPI Specification", url: "https://swagger.io/specification/", type: "docs" }
+        ],
+        checklist: ["REST principles", "API versioning", "OpenAPI/Swagger docs", "Rate limiting & security"],
+        connections: ["system_design"]
+      },
+      {
+        id: "system_design", title: "System Design",
+        description: "Architect scalable systems with caching, message queues, and microservices patterns.",
+        tags: ["Advanced", "Architecture"], level: "advanced",
+        resources: [
+          { title: "System Design Primer", url: "https://github.com/donnemartin/system-design-primer", type: "article" },
+          { title: "Designing Data-Intensive Apps", url: "https://dataintensive.net/", type: "book" }
+        ],
+        checklist: ["Load balancing", "Caching strategies", "Message queues", "Microservices", "Database sharding"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "frontend_dev",
@@ -20,6 +88,63 @@ var PATHS = [
     color: "#7C3AED",
     estimatedWeeks: 20,
     nodes_count: 5,
+    nodes: [
+      {
+        id: "html_css", title: "HTML & CSS Fundamentals",
+        description: "Build the foundation of web development with semantic HTML and modern CSS.",
+        tags: ["Fundamental"], level: "beginner",
+        resources: [
+          { title: "MDN HTML Guide", url: "https://developer.mozilla.org/en-US/docs/Learn/HTML", type: "docs" },
+          { title: "CSS Tricks", url: "https://css-tricks.com/", type: "article" }
+        ],
+        checklist: ["HTML semantik", "CSS Box Model", "Flexbox & Grid", "Responsive design"],
+        connections: ["javascript"]
+      },
+      {
+        id: "javascript", title: "JavaScript Fundamentals",
+        description: "Master JavaScript including ES6+, async programming, and DOM manipulation.",
+        tags: ["Core"], level: "beginner",
+        resources: [
+          { title: "The Odin Project", url: "https://www.theodinproject.com/", type: "course" },
+          { title: "JavaScript.info", url: "https://javascript.info/", type: "docs" }
+        ],
+        checklist: ["ES6+ syntax", "DOM manipulation", "Promises & async/await", "Fetch API"],
+        connections: ["react"]
+      },
+      {
+        id: "react", title: "React Framework",
+        description: "Build component-based UIs with React, hooks, and modern state management.",
+        tags: ["Framework"], level: "intermediate",
+        resources: [
+          { title: "React Official Docs", url: "https://react.dev/learn", type: "docs" },
+          { title: "React Tutorial - Scrimba", url: "https://scrimba.com/learn/learnreact", type: "course" }
+        ],
+        checklist: ["Components & props", "useState & useEffect", "Custom hooks", "Context API"],
+        connections: ["nextjs", "state_management"]
+      },
+      {
+        id: "state_management", title: "State Management",
+        description: "Manage complex application state with Zustand, Redux Toolkit, or Jotai.",
+        tags: ["Advanced"], level: "intermediate",
+        resources: [
+          { title: "Zustand Docs", url: "https://zustand-demo.pmnd.rs/", type: "docs" },
+          { title: "Redux Toolkit", url: "https://redux-toolkit.js.org/", type: "docs" }
+        ],
+        checklist: ["Global state patterns", "Zustand setup", "Async actions", "State persistence"],
+        connections: ["nextjs"]
+      },
+      {
+        id: "nextjs", title: "Next.js",
+        description: "Build production-grade React applications with Next.js App Router and server components.",
+        tags: ["Framework", "Advanced"], level: "advanced",
+        resources: [
+          { title: "Next.js Docs", url: "https://nextjs.org/docs", type: "docs" },
+          { title: "Next.js Learn", url: "https://nextjs.org/learn", type: "course" }
+        ],
+        checklist: ["App Router", "Server & client components", "Data fetching", "Deployment (Vercel)"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "ai_engineer",
@@ -29,8 +154,65 @@ var PATHS = [
     icon: "brain",
     tags: ["AI", "Machine Learning", "Python"],
     color: "#059669",
-    estimatedWeeks: 28,
+    estimatedWeeks: 32,
     nodes_count: 5,
+    nodes: [
+      {
+        id: "math_foundations", title: "Math Foundations",
+        description: "Cover linear algebra, calculus, and statistics essential for understanding ML algorithms.",
+        tags: ["Math", "Fundamental"], level: "beginner",
+        resources: [
+          { title: "3Blue1Brown - Linear Algebra", url: "https://www.3blue1brown.com/topics/linear-algebra", type: "video" },
+          { title: "Khan Academy Statistics", url: "https://www.khanacademy.org/math/statistics-probability", type: "course" }
+        ],
+        checklist: ["Linear algebra (matriks, vektor)", "Kalkulus diferensial", "Probabilitas & statistik", "Optimasi dasar"],
+        connections: ["python_ml"]
+      },
+      {
+        id: "python_ml", title: "Python for ML",
+        description: "Master Python data science ecosystem including NumPy, Pandas, and Matplotlib.",
+        tags: ["Python"], level: "beginner",
+        resources: [
+          { title: "Kaggle Python Course", url: "https://www.kaggle.com/learn/python", type: "course" },
+          { title: "NumPy Docs", url: "https://numpy.org/doc/", type: "docs" }
+        ],
+        checklist: ["NumPy & array operations", "Pandas dataframes", "Matplotlib & Seaborn", "Data preprocessing"],
+        connections: ["classical_ml"]
+      },
+      {
+        id: "classical_ml", title: "Classical Machine Learning",
+        description: "Understand supervised, unsupervised learning algorithms and model evaluation.",
+        tags: ["ML"], level: "intermediate",
+        resources: [
+          { title: "Scikit-learn Tutorial", url: "https://scikit-learn.org/stable/tutorial/", type: "docs" },
+          { title: "Andrew Ng ML Course", url: "https://www.coursera.org/specializations/machine-learning-introduction", type: "course" }
+        ],
+        checklist: ["Linear & logistic regression", "Decision trees & random forest", "K-means clustering", "Model evaluation & metrics"],
+        connections: ["deep_learning"]
+      },
+      {
+        id: "deep_learning", title: "Deep Learning",
+        description: "Build neural networks using PyTorch or TensorFlow for computer vision and NLP.",
+        tags: ["Deep Learning", "Neural Networks"], level: "advanced",
+        resources: [
+          { title: "fast.ai Course", url: "https://course.fast.ai/", type: "course" },
+          { title: "PyTorch Tutorials", url: "https://pytorch.org/tutorials/", type: "docs" }
+        ],
+        checklist: ["Neural network fundamentals", "CNNs & image classification", "RNNs & sequence modeling", "Transfer learning"],
+        connections: ["mlops"]
+      },
+      {
+        id: "mlops", title: "MLOps & Deployment",
+        description: "Deploy, monitor, and maintain ML models in production environments.",
+        tags: ["DevOps", "Production"], level: "advanced",
+        resources: [
+          { title: "MLflow Docs", url: "https://mlflow.org/docs/latest/index.html", type: "docs" },
+          { title: "Hugging Face Hub", url: "https://huggingface.co/docs", type: "docs" }
+        ],
+        checklist: ["Model versioning (MLflow)", "API serving (FastAPI)", "Docker containerization", "Model monitoring"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "cybersecurity",
@@ -40,8 +222,65 @@ var PATHS = [
     icon: "shield",
     tags: ["Security", "Networking", "Ethical Hacking"],
     color: "#DC2626",
-    estimatedWeeks: 22,
+    estimatedWeeks: 28,
     nodes_count: 5,
+    nodes: [
+      {
+        id: "networking_basics", title: "Networking Fundamentals",
+        description: "Understand how networks work, protocols, and TCP/IP stack.",
+        tags: ["Networking"], level: "beginner",
+        resources: [
+          { title: "CompTIA Network+ Study", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/", type: "video" },
+          { title: "Cisco Networking Academy", url: "https://www.netacad.com/", type: "course" }
+        ],
+        checklist: ["OSI Model & TCP/IP", "IP addressing & subnetting", "DNS, HTTP, HTTPS", "Firewall & VPN basics"],
+        connections: ["linux_fundamentals"]
+      },
+      {
+        id: "linux_fundamentals", title: "Linux & Command Line",
+        description: "Master Linux system administration and bash scripting for security work.",
+        tags: ["Linux", "OS"], level: "beginner",
+        resources: [
+          { title: "Linux Journey", url: "https://linuxjourney.com/", type: "course" },
+          { title: "OverTheWire Bandit", url: "https://overthewire.org/wargames/bandit/", type: "practice" }
+        ],
+        checklist: ["File system & permissions", "Bash scripting", "Process management", "Network commands"],
+        connections: ["cryptography", "web_security"]
+      },
+      {
+        id: "cryptography", title: "Cryptography",
+        description: "Understand encryption, hashing, digital signatures and PKI fundamentals.",
+        tags: ["Cryptography"], level: "intermediate",
+        resources: [
+          { title: "Crypto101", url: "https://www.crypto101.io/", type: "book" },
+          { title: "CryptoHack", url: "https://cryptohack.org/", type: "practice" }
+        ],
+        checklist: ["Symmetric encryption (AES)", "Asymmetric encryption (RSA)", "Hashing (SHA)", "PKI & certificates"],
+        connections: ["penetration_testing"]
+      },
+      {
+        id: "web_security", title: "Web Application Security",
+        description: "Learn common web vulnerabilities (OWASP Top 10) and how to exploit and defend them.",
+        tags: ["Web Security", "OWASP"], level: "intermediate",
+        resources: [
+          { title: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/", type: "docs" },
+          { title: "Hack The Box", url: "https://www.hackthebox.com/", type: "practice" }
+        ],
+        checklist: ["SQL Injection", "XSS & CSRF", "Broken authentication", "SSRF & XXE"],
+        connections: ["penetration_testing"]
+      },
+      {
+        id: "penetration_testing", title: "Penetration Testing",
+        description: "Conduct systematic security assessments using industry-standard methodologies.",
+        tags: ["Offensive Security", "Advanced"], level: "advanced",
+        resources: [
+          { title: "TryHackMe", url: "https://tryhackme.com/", type: "practice" },
+          { title: "Kali Linux Revealed", url: "https://kali.training/", type: "book" }
+        ],
+        checklist: ["Reconnaissance techniques", "Exploitation (Metasploit)", "Post-exploitation", "Report writing"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "devops",
@@ -51,8 +290,65 @@ var PATHS = [
     icon: "git-branch",
     tags: ["DevOps", "Cloud", "Docker", "CI/CD"],
     color: "#D97706",
-    estimatedWeeks: 20,
+    estimatedWeeks: 26,
     nodes_count: 5,
+    nodes: [
+      {
+        id: "linux_devops", title: "Linux Administration",
+        description: "Master Linux systems administration for server management and automation.",
+        tags: ["Linux"], level: "beginner",
+        resources: [
+          { title: "Linux Command Line Book", url: "https://linuxcommand.org/tlcl.php", type: "book" },
+          { title: "Linux Foundation Course", url: "https://training.linuxfoundation.org/", type: "course" }
+        ],
+        checklist: ["File system management", "User & group permissions", "Service management (systemd)", "Shell scripting"],
+        connections: ["git_cicd"]
+      },
+      {
+        id: "git_cicd", title: "Git & CI/CD",
+        description: "Version control mastery and automated pipeline implementation with GitHub Actions.",
+        tags: ["Git", "CI/CD"], level: "beginner",
+        resources: [
+          { title: "Git Branching", url: "https://learngitbranching.js.org/", type: "interactive" },
+          { title: "GitHub Actions Docs", url: "https://docs.github.com/en/actions", type: "docs" }
+        ],
+        checklist: ["Git workflow (branching, merging)", "Pull requests & code review", "GitHub Actions pipelines", "Automated testing in CI"],
+        connections: ["docker"]
+      },
+      {
+        id: "docker", title: "Docker & Containers",
+        description: "Containerize applications with Docker and orchestrate with Docker Compose.",
+        tags: ["Containers"], level: "intermediate",
+        resources: [
+          { title: "Docker Official Tutorial", url: "https://docs.docker.com/get-started/", type: "docs" },
+          { title: "Play with Docker", url: "https://labs.play-with-docker.com/", type: "practice" }
+        ],
+        checklist: ["Dockerfile authoring", "Docker networking", "Docker Compose", "Container security"],
+        connections: ["kubernetes"]
+      },
+      {
+        id: "kubernetes", title: "Kubernetes",
+        description: "Orchestrate containerized applications at scale with Kubernetes.",
+        tags: ["Containers", "Orchestration"], level: "advanced",
+        resources: [
+          { title: "Kubernetes Docs", url: "https://kubernetes.io/docs/tutorials/", type: "docs" },
+          { title: "KillerCoda K8s", url: "https://killercoda.com/playgrounds/scenario/kubernetes", type: "practice" }
+        ],
+        checklist: ["Pods & deployments", "Services & networking", "ConfigMaps & Secrets", "Helm charts"],
+        connections: ["cloud"]
+      },
+      {
+        id: "cloud", title: "Cloud Infrastructure",
+        description: "Deploy and manage infrastructure on AWS, GCP, or Azure using IaC tools.",
+        tags: ["Cloud", "IaC"], level: "advanced",
+        resources: [
+          { title: "AWS Free Tier", url: "https://aws.amazon.com/free/", type: "practice" },
+          { title: "Terraform Docs", url: "https://developer.hashicorp.com/terraform/docs", type: "docs" }
+        ],
+        checklist: ["Cloud compute (EC2/GCE)", "Object storage (S3/GCS)", "Terraform basics", "Monitoring (CloudWatch)"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "teknik_informatika",
@@ -62,18 +358,150 @@ var PATHS = [
     icon: "graduation-cap",
     tags: ["TI", "FILKOM UB", "Kurikulum"],
     color: "#2563EB",
-    estimatedWeeks: null,
+    estimatedWeeks: 192,
     nodes_count: 9,
+    nodes: [
+      {
+        id: "ti_sem1_prog", title: "Pemrograman Dasar",
+        description: "Algoritma dasar, pseudocode, dan implementasi program menggunakan bahasa C.",
+        tags: ["Semester 1"], level: "beginner", semester: 1,
+        resources: [{ title: "C Programming Tutorial", url: "https://www.learn-c.org/", type: "course" }],
+        checklist: ["Algoritma & flowchart", "Variabel & tipe data", "Percabangan & pengulangan", "Prosedur & fungsi"],
+        connections: ["ti_sem1_mat", "ti_sem2_strukdat"]
+      },
+      {
+        id: "ti_sem1_mat", title: "Matematika Diskrit",
+        description: "Logika proposisi, teori himpunan, relasi, dan pengantar teori graf.",
+        tags: ["Semester 1"], level: "beginner", semester: 1,
+        resources: [{ title: "Discrete Math - MIT OCW", url: "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/", type: "course" }],
+        checklist: ["Logika proposisi", "Himpunan & relasi", "Fungsi & barisan", "Graph dasar"],
+        connections: ["ti_sem2_strukdat"]
+      },
+      {
+        id: "ti_sem2_strukdat", title: "Struktur Data",
+        description: "Array, linked list, stack, queue, tree, dan graph dengan implementasi C++.",
+        tags: ["Semester 2"], level: "beginner", semester: 2,
+        resources: [{ title: "Visualgo", url: "https://visualgo.net/", type: "interactive" }],
+        checklist: ["Array & pointer", "Linked list", "Stack & queue", "Binary tree", "Graph"],
+        connections: ["ti_sem3_algo", "ti_sem3_db"]
+      },
+      {
+        id: "ti_sem3_algo", title: "Algoritma & Kompleksitas",
+        description: "Analisis algoritma, teknik desain, dan kompleksitas komputasi.",
+        tags: ["Semester 3"], level: "intermediate", semester: 3,
+        resources: [{ title: "Algorithm Design Manual", url: "https://www.algorist.com/", type: "book" }],
+        checklist: ["Big-O analysis", "Divide & conquer", "Dynamic programming", "Greedy algorithms"],
+        connections: ["ti_sem4_jarkom"]
+      },
+      {
+        id: "ti_sem3_db", title: "Basis Data",
+        description: "Perancangan database relasional, SQL, normalisasi, dan ERD.",
+        tags: ["Semester 3"], level: "intermediate", semester: 3,
+        resources: [{ title: "SQL Tutorial", url: "https://www.sqltutorial.org/", type: "course" }],
+        checklist: ["Entity-Relationship Diagram", "SQL DML & DDL", "Normalisasi 1NF-3NF", "Transaction & trigger"],
+        connections: ["ti_sem4_jarkom"]
+      },
+      {
+        id: "ti_sem4_jarkom", title: "Jaringan Komputer",
+        description: "Model OSI, protokol TCP/IP, routing, dan keamanan jaringan dasar.",
+        tags: ["Semester 4"], level: "intermediate", semester: 4,
+        resources: [{ title: "Computer Networking - Top-Down", url: "https://gaia.cs.umass.edu/kurose_ross/", type: "book" }],
+        checklist: ["Model OSI & TCP/IP", "IP addressing & routing", "HTTP & DNS", "Network security basics"],
+        connections: ["ti_sem5_rpl", "ti_sem5_ai"]
+      },
+      {
+        id: "ti_sem5_rpl", title: "Rekayasa Perangkat Lunak",
+        description: "SDLC, Agile, UML, desain arsitektur, dan manajemen proyek software.",
+        tags: ["Semester 5"], level: "advanced", semester: 5,
+        resources: [{ title: "Agile Manifesto", url: "https://agilemanifesto.org/", type: "article" }],
+        checklist: ["SDLC & Agile/Scrum", "UML diagrams", "Software architecture patterns", "Testing & QA"],
+        connections: ["ti_sem6_capstone"]
+      },
+      {
+        id: "ti_sem5_ai", title: "Kecerdasan Buatan",
+        description: "Pengantar AI, searching algorithms, logika fuzzy, dan machine learning dasar.",
+        tags: ["Semester 5"], level: "advanced", semester: 5,
+        resources: [{ title: "AI - A Modern Approach", url: "https://aima.cs.berkeley.edu/", type: "book" }],
+        checklist: ["Searching (BFS, DFS, A*)", "Knowledge representation", "Machine learning dasar", "Neural network intro"],
+        connections: ["ti_sem6_capstone"]
+      },
+      {
+        id: "ti_sem6_capstone", title: "Proyek Akhir / Skripsi",
+        description: "Penelitian mandiri, penulisan ilmiah, dan pengembangan sistem inovatif.",
+        tags: ["Semester 7-8"], level: "advanced", semester: 8,
+        resources: [{ title: "IEEE Xplore", url: "https://ieeexplore.ieee.org/", type: "research" }],
+        checklist: ["Proposal penelitian", "Studi literatur", "Implementasi sistem", "Penulisan laporan", "Sidang / presentasi"],
+        connections: []
+      }
+    ]
   },
   {
     path_id: "sistem_informasi",
     title: "Sistem Informasi",
-    description: "Kurikulum program studi Sistem Informasi FILKOM UB — menggabungkan IT dengan bisnis.",
+    description: "Kurikulum program studi Sistem Informasi FILKOM UB - menggabungkan IT dengan bisnis.",
     category: "study_program",
     icon: "database",
     tags: ["SI", "FILKOM UB", "Bisnis & IT"],
     color: "#7C3AED",
-    estimatedWeeks: null,
+    estimatedWeeks: 192,
     nodes_count: 7,
-  },
+    nodes: [
+      {
+        id: "si_sem1_intro", title: "Pengantar Sistem Informasi",
+        description: "Konsep dasar SI, peran IT dalam organisasi, dan komponen sistem informasi.",
+        tags: ["Semester 1"], level: "beginner", semester: 1,
+        resources: [{ title: "MIS Essentials", url: "https://www.pearsoned.com/", type: "book" }],
+        checklist: ["Konsep SI & komponen", "Peran SI dalam bisnis", "Jenis-jenis SI", "Tren teknologi informasi"],
+        connections: ["si_sem2_prog", "si_sem2_db"]
+      },
+      {
+        id: "si_sem2_prog", title: "Pemrograman Web",
+        description: "Dasar HTML, CSS, JavaScript, dan framework web untuk aplikasi bisnis.",
+        tags: ["Semester 2"], level: "beginner", semester: 2,
+        resources: [{ title: "freeCodeCamp Web", url: "https://www.freecodecamp.org/learn/", type: "course" }],
+        checklist: ["HTML & CSS dasar", "JavaScript fundamentals", "PHP dasar", "Laravel/CodeIgniter intro"],
+        connections: ["si_sem3_analisis"]
+      },
+      {
+        id: "si_sem2_db", title: "Manajemen Basis Data",
+        description: "Perancangan database untuk aplikasi bisnis, SQL, dan database management systems.",
+        tags: ["Semester 2"], level: "beginner", semester: 2,
+        resources: [{ title: "MySQL Tutorial", url: "https://www.mysqltutorial.org/", type: "docs" }],
+        checklist: ["ERD & normalisasi", "SQL dasar & lanjut", "Stored procedure", "Database optimization"],
+        connections: ["si_sem3_analisis"]
+      },
+      {
+        id: "si_sem3_analisis", title: "Analisis & Perancangan SI",
+        description: "Metodologi pengembangan sistem, requirement gathering, dan desain sistem.",
+        tags: ["Semester 3"], level: "intermediate", semester: 3,
+        resources: [{ title: "UML Distilled", url: "https://martinfowler.com/books/uml.html", type: "book" }],
+        checklist: ["Requirement analysis", "Use case & UML", "DFD & ERD lanjut", "Prototype & mockup"],
+        connections: ["si_sem4_manpro", "si_sem4_enterprise"]
+      },
+      {
+        id: "si_sem4_manpro", title: "Manajemen Proyek IT",
+        description: "Perencanaan proyek IT, Agile/Scrum, manajemen risiko, dan dokumentasi proyek.",
+        tags: ["Semester 4"], level: "intermediate", semester: 4,
+        resources: [{ title: "PMI Resources", url: "https://www.pmi.org/learning/library", type: "article" }],
+        checklist: ["Project planning & WBS", "Agile & Scrum framework", "Risk management", "Monitoring & pengendalian"],
+        connections: ["si_sem6_capstone"]
+      },
+      {
+        id: "si_sem4_enterprise", title: "Enterprise Resource Planning",
+        description: "Sistem ERP, implementasi SAP/Odoo, dan integrasi proses bisnis.",
+        tags: ["Semester 4"], level: "intermediate", semester: 4,
+        resources: [{ title: "SAP Learning Hub", url: "https://learning.sap.com/", type: "course" }],
+        checklist: ["Konsep ERP & modul", "Business process mapping", "Odoo/SAP basic", "ERP implementation"],
+        connections: ["si_sem6_capstone"]
+      },
+      {
+        id: "si_sem6_capstone", title: "Proyek Akhir / Skripsi",
+        description: "Perancangan dan implementasi sistem informasi untuk problem nyata organisasi.",
+        tags: ["Semester 7-8"], level: "advanced", semester: 8,
+        resources: [{ title: "ACM Digital Library", url: "https://dl.acm.org/", type: "research" }],
+        checklist: ["Problem identification", "System design & prototype", "Implementation & testing", "Business value analysis"],
+        connections: []
+      }
+    ]
+  }
 ];

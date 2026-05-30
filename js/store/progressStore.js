@@ -1,12 +1,11 @@
 var ProgressStore = (function() {
 
-  // key menyimpan data di localStorage
-  var STORAGE_KEY  = "peta-karir-progress";
-  var ACTIVE_KEY   = "peta-karir-active-path";
+  var STORAGE_KEY = "peta-karir-progress";
+  var ACTIVE_KEY  = "peta-karir-active-path";
 
-  var _progress    = {};
-  var _activePath  = null;
-  var _listeners   = [];
+  var _progress   = {};
+  var _activePath = null;
+  var _listeners  = [];
 
   function _load() {
     try {
@@ -18,7 +17,6 @@ var ProgressStore = (function() {
     }
   }
 
-  // Simpan data ke localStorage
   function _save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(_progress));
     if (_activePath) {
@@ -29,30 +27,15 @@ var ProgressStore = (function() {
     _listeners.forEach(function(fn) { fn(); });
   }
 
-  // Public API
-  // Daftar fungsi yang ingin dipanggil setiap ada perubahan data
-  function subscribe(fn) {
-    _listeners.push(fn);
-  }
+  function subscribe(fn) { _listeners.push(fn); }
 
-  // Ambil semua data progress
-  function getProgress() {
-    return _progress;
-  }
+  function getProgress()           { return _progress; }
+  function getActivePath()         { return _activePath; }
+  function getPathProgress(pathId) { return _progress[pathId] || {}; }
 
-  // Ambil ID path yang sedang aktif
-  function getActivePath() {
-    return _activePath;
-  }
-
-  // Set path mana yang sedang aktif
   function setActivePath(pathId) {
     _activePath = pathId;
     _save();
-  }
-
-  function getPathProgress(pathId) {
-    return _progress[pathId] || {};
   }
 
   function getDoneCount(pathId) {
@@ -60,9 +43,28 @@ var ProgressStore = (function() {
     return Object.values(pp).filter(function(s) { return s === "done"; }).length;
   }
 
+  function getLearningCount(pathId) {
+    var pp = _progress[pathId] || {};
+    return Object.values(pp).filter(function(s) { return s === "learning"; }).length;
+  }
+
   function getPercent(pathId, totalNodes) {
     if (!totalNodes) return 0;
     return Math.round((getDoneCount(pathId) / totalNodes) * 100);
+  }
+
+  function getNodeStatus(pathId, nodeId) {
+    return (_progress[pathId] && _progress[pathId][nodeId]) || "not_started";
+  }
+
+  function setNodeStatus(pathId, nodeId, status) {
+    if (!_progress[pathId]) _progress[pathId] = {};
+    if (status === "not_started") {
+      delete _progress[pathId][nodeId];
+    } else {
+      _progress[pathId][nodeId] = status;
+    }
+    _save();
   }
 
   _load();
@@ -74,7 +76,10 @@ var ProgressStore = (function() {
     setActivePath,
     getPathProgress,
     getDoneCount,
+    getLearningCount,
     getPercent,
+    getNodeStatus,
+    setNodeStatus,
   };
 
 })();
