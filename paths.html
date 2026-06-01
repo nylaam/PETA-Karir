@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Paths — PETA Karir</title>
+  <meta name="description" content="Pilih jalur belajar yang sesuai dengan tujuan karirmu atau kurikulum program studimu." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+
+  <link rel="stylesheet" href="css/globals.css" />
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+
+  <div id="navbar"></div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Header -->
+    <div class="mb-8 animate-fade-in">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Learning Paths</h1>
+      <p class="text-slate-500">
+        Pilih jalur belajar yang sesuai dengan tujuan karirmu atau kurikulum program studimu.
+      </p>
+    </div>
+
+    <!-- Search + Filter -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-6 animate-fade-in">
+      <!-- Search -->
+      <div class="relative flex-1">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Cari path atau teknologi..."
+          class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm
+                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+        />
+      </div>
+
+      <!-- Category filter -->
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-slate-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        <button id="filter-all"         class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200">All</button>
+        <button id="filter-competency"  class="filter-btn        px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200">Competency</button>
+        <button id="filter-study"       class="filter-btn        px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200">Study Program</button>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <p id="results-count" class="text-sm text-slate-400 mb-6"></p>
+
+    <!-- Path grid -->
+    <div id="paths-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger"></div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden text-center py-20">
+      <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <p class="text-slate-500 font-semibold">Tidak ada path yang cocok</p>
+      <p class="text-sm text-slate-400 mt-1">Coba kata kunci yang berbeda</p>
+    </div>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <style>
+    .filter-btn {
+      background: white;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+    .filter-btn:hover {
+      border-color: #2563EB;
+      color: #2563EB;
+    }
+    .filter-btn.active {
+      background: #2563EB;
+      color: white;
+      border-color: #2563EB;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+  </style>
+
+  <script src="js/data/paths.js"></script>
+  <script src="js/store/progressStore.js"></script>
+  <script src="js/components/Navbar.js"></script>
+  <script src="js/components/Footer.js"></script>
+  <script src="js/components/PathCard.js"></script>
+  <script src="js/pages/paths.js"></script>
+
+</body>
+</html>
