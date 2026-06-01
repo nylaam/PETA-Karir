@@ -4,43 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — PETA Karir</title>
+  <meta name="description" content="Ringkasan progres belajarmu di PETA Karir." />
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT:"#2563EB", 50:"#EFF6FF", 600:"#2563EB", 700:"#1D4ED8" },
-            accent: "#38BDF8",
-          },
-          fontFamily: { sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"] },
-        }
-      }
-    };
-  </script>
+  <script src="tailwind.config.js"></script>
+
   <link rel="stylesheet" href="css/globals.css" />
 </head>
 <body class="bg-slate-50 font-sans text-slate-900 antialiased">
+
   <div id="navbar"></div>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-      <h1 class="text-2xl font-bold text-slate-900 mb-2">Dashboard</h1>
-      <p class="text-slate-500 text-sm">Halaman ini sedang dikerjakan oleh anggota tim lain.</p>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between animate-fade-in">
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">Dashboard</h1>
+        <p class="text-slate-500 mt-1">Ringkasan progres belajarmu</p>
+      </div>
+      <button id="btn-export"
+              class="btn btn-secondary btn-md flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Export Progress
+      </button>
+    </div>
+
+    <!-- Stat Cards -->
+    <div id="stat-cards" class="grid grid-cols-2 sm:grid-cols-4 gap-4 stagger"></div>
+
+    <!-- Middle row: Progress per Path + Path Summary -->
+    <div class="grid lg:grid-cols-5 gap-6">
+
+      <!-- Progress per Path (horizontal bars) -->
+      <div class="card lg:col-span-3">
+        <div class="flex items-center gap-2 mb-6">
+          <svg class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <h2 class="font-bold text-slate-900">Progress per Path</h2>
+        </div>
+        <div id="progress-per-path"></div>
+      </div>
+
+      <!-- Path Summary -->
+      <div class="card lg:col-span-2">
+        <h2 class="font-bold text-slate-900 mb-4">Path Summary</h2>
+        <div id="path-summary" class="space-y-4 overflow-y-auto max-h-[280px]" style="scrollbar-width:thin"></div>
+      </div>
+
+    </div>
+
+    <!-- Recommended Next Steps -->
+    <section id="next-steps-section" class="hidden">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">Recommended Next Steps</h2>
+      <div id="next-steps-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger"></div>
+    </section>
+
   </main>
 
   <div id="footer"></div>
+
   <script src="js/data/paths.js"></script>
   <script src="js/store/progressStore.js"></script>
   <script src="js/components/Navbar.js"></script>
   <script src="js/components/Footer.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const total = PATHS.reduce((a,p) => a + p.nodes_count, 0);
-      const done  = PATHS.reduce((a,p) => a + ProgressStore.getDoneCount(p.path_id), 0);
-      const pct   = total > 0 ? Math.round((done/total)*100) : 0;
-      Navbar.init("#navbar", pct);
-      Footer.init("#footer");
-    });
-  </script>
+  <script src="js/components/PathCard.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+
 </body>
 </html>
