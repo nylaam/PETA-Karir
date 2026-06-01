@@ -51,6 +51,7 @@ body {
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   margin: 0;
+  padding-top: 64px; /* offset untuk fixed navbar (h-16) */
 }
 
 /* Scrollbar  */

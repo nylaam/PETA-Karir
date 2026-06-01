@@ -81,7 +81,7 @@ function renderHeroContinue(activePath) {
 
         <!-- Tombol -->
         <div class="flex flex-wrap gap-3">
-          <a href="roadmap.html?path=${activePath.path_id}" class="btn btn-white btn-lg">
+          <a href="roadmap/index.html?path=${activePath.path_id}" class="btn btn-white btn-lg">
             Continue Roadmap →
           </a>
           <a href="paths.html" class="btn btn-ghost btn-lg">

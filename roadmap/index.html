@@ -17,7 +17,7 @@
   <div id="navbar"></div>
 
   <!-- Top bar: back + path info + filters + stats -->
-  <div id="roadmap-topbar" class="hidden sticky top-16 z-40 bg-white border-b border-slate-200 shadow-sm">
+  <div id="roadmap-topbar" class="hidden bg-white border-b border-slate-200 shadow-sm" style="position:sticky;top:64px;z-index:40;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center gap-3 h-14 flex-wrap">
 
@@ -78,7 +78,8 @@
 
     <!-- Detail drawer (right panel) -->
     <aside id="node-drawer"
-           class="hidden w-[360px] shrink-0 bg-white border border-slate-200 rounded-2xl shadow-lg self-start sticky top-32 overflow-hidden">
+           class="hidden w-[360px] shrink-0 bg-white border border-slate-200 rounded-2xl shadow-lg self-start overflow-hidden"
+           style="position:sticky;top:128px;">
       <!-- filled by roadmap.js -->
     </aside>
 

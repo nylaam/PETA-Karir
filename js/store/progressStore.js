@@ -1,24 +1,29 @@
 var ProgressStore = (function() {
 
-  var STORAGE_KEY = "peta-karir-progress";
-  var ACTIVE_KEY  = "peta-karir-active-path";
+  var STORAGE_KEY   = "peta-karir-progress";
+  var ACTIVE_KEY    = "peta-karir-active-path";
+  var CHECKLIST_KEY = "peta-karir-checklist";
 
   var _progress   = {};
   var _activePath = null;
+  var _checklist  = {}; // { "pathId__nodeId__idx": true/false }
   var _listeners  = [];
 
   function _load() {
     try {
-      _progress   = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-      _activePath = localStorage.getItem(ACTIVE_KEY) || null;
+      _progress  = JSON.parse(localStorage.getItem(STORAGE_KEY)   || "{}");
+      _activePath= localStorage.getItem(ACTIVE_KEY) || null;
+      _checklist = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || "{}");
     } catch (e) {
       _progress   = {};
       _activePath = null;
+      _checklist  = {};
     }
   }
 
   function _save() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(_progress));
+    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(_checklist));
     if (_activePath) {
       localStorage.setItem(ACTIVE_KEY, _activePath);
     } else {
@@ -67,6 +72,22 @@ var ProgressStore = (function() {
     _save();
   }
 
+  function getChecklistItem(pathId, nodeId, idx) {
+    var key = pathId + "__" + nodeId + "__" + idx;
+    return !!_checklist[key];
+  }
+
+  function setChecklistItem(pathId, nodeId, idx, checked) {
+    var key = pathId + "__" + nodeId + "__" + idx;
+    if (checked) {
+      _checklist[key] = true;
+    } else {
+      delete _checklist[key];
+    }
+    // save without triggering full subscribe (checklist doesn't affect progress stats)
+    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(_checklist));
+  }
+
   _load();
 
   return {
@@ -80,6 +101,8 @@ var ProgressStore = (function() {
     getPercent,
     getNodeStatus,
     setNodeStatus,
+    getChecklistItem,
+    setChecklistItem,
   };
 
 })();

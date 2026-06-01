@@ -17,14 +17,18 @@ var Navbar = {
     return this.icons[name] || "";
   },
 
-  render: function(overallPercent) {
+  render: function(overallPercent, basePath) {
     var el = document.getElementById("navbar");
     if (!el) return;
 
+    // basePath: '' for root pages, '../' for subfolders like roadmap/
+    var base = basePath || "";
     var currentPage = window.location.pathname.split("/").pop() || "index.html";
 
     var menuHTML = this.menuItems.map(function(item) {
-      var isActive = currentPage === item.href;
+      // Extract just the filename for comparison (strips ../ prefix)
+      var itemFile = item.href.split("/").pop();
+      var isActive = currentPage === itemFile;
       var activeClass = isActive
         ? "bg-blue-50 text-blue-600 font-semibold"
         : "text-slate-500 hover:text-slate-800 hover:bg-slate-100";
@@ -34,17 +38,22 @@ var Navbar = {
       </a>`;
     }).join("");
 
+    var logoHref = base + "index.html";
+
+    el.style.position = "fixed";
+    el.style.top       = "0";
+    el.style.left      = "0";
+    el.style.right     = "0";
+    el.style.zIndex    = "9999";
+
     el.innerHTML = `
-      <header class="glass sticky top-0 z-50">
+      <header class="glass" style="width:100%;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
 
             <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-2.5 no-underline">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                   style="background: linear-gradient(135deg, #2563EB, #38BDF8);">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              </div>
+            <a href="${logoHref}" class="flex items-center gap-2.5 no-underline">
+              <img src="${base}images/logo.png" alt="PETA Karir Logo" class="w-8 h-8 object-contain" />
               <span class="font-bold text-xl text-slate-900">
                 PETA <span class="text-blue-600">Karir</span>
               </span>

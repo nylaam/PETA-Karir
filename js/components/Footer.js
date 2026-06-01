@@ -11,14 +11,15 @@ var Footer = {
     { href: "settings.html",  label: "Settings" },
   ],
 
-  render: function() {
+  render: function(basePath) {
     var el = document.getElementById("footer");
     if (!el) return;
 
+    var base = basePath || "";
     var year = new Date().getFullYear();
 
     var linksHTML = this.menuItems.map(function(item) {
-      return '<a href="' + item.href + '" class="text-slate-400 hover:text-white text-sm transition-colors">' + item.label + '</a>';
+      return '<a href="' + base + item.href + '" class="text-slate-400 hover:text-white text-sm transition-colors">' + item.label + '</a>';
     }).join("");
 
     el.innerHTML = `
@@ -29,11 +30,8 @@ var Footer = {
 
             <!-- Brand -->
             <div>
-              <a href="index.html" class="inline-flex items-center gap-2.5 mb-4 no-underline">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center"
-                     style="background: linear-gradient(135deg, #2563EB, #38BDF8);">
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-                </div>
+              <a href="${base}index.html" class="inline-flex items-center gap-2.5 mb-4 no-underline">
+                <img src="${base}images/logo.png" alt="PETA Karir Logo" class="w-8 h-8 object-contain" />
                 <span class="font-bold text-lg text-white">
                   PETA <span class="text-sky-400">Karir</span>
                 </span>

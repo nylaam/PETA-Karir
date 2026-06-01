@@ -236,11 +236,23 @@
     if (_activeTab === "checklist") {
       html += '<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Learning Objectives</p>';
       if (node.checklist && node.checklist.length) {
-        node.checklist.forEach(function (item) {
-          html += '<div class="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-100 mb-2">';
-          html += ICONS.checkSmall;
-          html += '<span class="text-sm text-slate-600">' + item + '</span>';
-          html += '</div>';
+        node.checklist.forEach(function (item, idx) {
+          var checked = ProgressStore.getChecklistItem(_pathId, node.id, idx);
+          var rowBg   = checked ? 'background:#F0FDF4;border-color:#BBF7D0' : 'background:#F8FAFC;border-color:#F1F5F9';
+          var iconColor = checked ? '#10B981' : '#CBD5E1';
+          var textColor = checked ? '#15803D' : '#475569';
+          html +=
+            '<div class="checklist-item flex items-start gap-2.5 p-3 rounded-lg border mb-2 cursor-pointer select-none transition-all"' +
+              ' style="' + rowBg + '"' +
+              ' data-checklist-idx="' + idx + '">' +
+            '<svg class="w-4 h-4 mt-0.5 shrink-0 transition-colors" style="color:' + iconColor + '"' +
+                 ' viewBox="0 0 24 24" fill="' + (checked ? iconColor : 'none') + '" stroke="' + iconColor + '" stroke-width="2">' +
+              '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' +
+            '</svg>' +
+            '<span class="text-sm transition-colors" style="color:' + textColor + (checked ? ';text-decoration:line-through;opacity:0.7' : '') + '">' +
+              item +
+            '</span>' +
+            '</div>';
         });
       } else {
         html += '<p class="text-sm text-slate-400">Belum ada checklist tersedia.</p>';
@@ -282,6 +294,17 @@
     drawer.querySelectorAll(".drawer-tab").forEach(function (btn) {
       btn.addEventListener("click", function () {
         _activeTab = this.getAttribute("data-tab");
+        renderDrawer(node);
+      });
+    });
+
+    // Bind checklist item clicks
+    drawer.querySelectorAll(".checklist-item").forEach(function (row) {
+      row.addEventListener("click", function () {
+        var idx     = parseInt(this.getAttribute("data-checklist-idx"), 10);
+        var current = ProgressStore.getChecklistItem(_pathId, node.id, idx);
+        ProgressStore.setChecklistItem(_pathId, node.id, idx, !current);
+        // Re-render drawer tab without triggering full subscribe
         renderDrawer(node);
       });
     });
@@ -329,8 +352,8 @@
       { href: "../dashboard.html", label: "Dashboard", icon: "layout-dashboard" },
       { href: "../settings.html",  label: "Settings",  icon: "settings" },
     ];
-    Navbar.render(overall);
-    Footer.render();
+    Navbar.render(overall, "../");
+    Footer.render("../");
 
     var loading  = document.getElementById("loading-state");
     var notFound = document.getElementById("not-found");
