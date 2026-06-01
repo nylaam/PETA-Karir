@@ -40,8 +40,14 @@ var Navbar = {
 
     var logoHref = base + "index.html";
 
+    el.style.position = "fixed";
+    el.style.top       = "0";
+    el.style.left      = "0";
+    el.style.right     = "0";
+    el.style.zIndex    = "9999";
+
     el.innerHTML = `
-      <header class="glass sticky top-0 z-50">
+      <header class="glass" style="width:100%;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
 
