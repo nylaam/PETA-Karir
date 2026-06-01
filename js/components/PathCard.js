@@ -32,7 +32,7 @@ var PathCard = {
 
   competency: function(path, percent, done, isActive) {
     return `
-      <a href="roadmap.html?path=${path.path_id}"
+      <a href="roadmap/index.html?path=${path.path_id}"
          class="card-interactive group animate-slide-up ${isActive ? "active" : ""}">
 
         <div class="flex items-start justify-between mb-4">
@@ -64,7 +64,7 @@ var PathCard = {
 
   studyProgram: function(path, percent, done, isActive) {
     return `
-      <a href="roadmap.html?path=${path.path_id}"
+      <a href="roadmap/index.html?path=${path.path_id}"
          class="card-interactive group flex gap-4 animate-slide-up ${isActive ? "active" : ""}">
 
         <!-- Icon -->

@@ -353,7 +353,7 @@
       { href: "../settings.html",  label: "Settings",  icon: "settings" },
     ];
     Navbar.render(overall, "../");
-    Footer.render();
+    Footer.render("../");
 
     var loading  = document.getElementById("loading-state");
     var notFound = document.getElementById("not-found");
